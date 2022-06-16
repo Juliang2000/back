@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: servicio-cliente
+      #Load Balance
+        uri: lb://servicio-cliente
+        predicates:
+        - Path= /api/cliente/**
+        filters:
+        - StripPrefix=2
+      - id: servicio-repuesto
+      #Load Balance
+        uri: lb://servicio-repuesto
+        predicates:
+        - Path= /api/repuesto/**
+        filters:
+        - StripPrefix=2
+      - id: servicio-factura
+      #Load Balance
+        uri: lb://servicio-factura
+        predicates:
+        - Path= /api/factura/**
+        filters:
+        - StripPrefix=2
+      - id: servicio-mecanico
+      #Load Balance
+        uri: lb://servicio-mecanico
+        predicates:
+        - Path= /api/mecanico/**
+        filters:
+        - StripPrefix=2
